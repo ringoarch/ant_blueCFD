@@ -19,8 +19,6 @@
 - 安装blueCFD AIR软件；
 - 安装blueCFD Core；
 - 安装Rhino 7；
-- 下载本项目，并保存到Rhino 7的`c:\Users\<用户名>\AppData\Roaming\McNeel\Rhinoceros\7.0\scripts\`，其中用户名是你的计算机用户名；
-- 将项目中的`UserObjects`文件夹复制到Rhino 7的`UserObjects`文件夹中；
-- 打开项目中的`Templates`文件夹中的`01_BlueCFD_Air_Modelling.gh`进行建模。
+- 安装ant_blueCFDInstaller.exe。
 
 由于没在其他电脑上测试过，可能不同环境下，会有一些bug，欢迎大家捉虫，具体操作方法见B站视频。
