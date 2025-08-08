@@ -59,7 +59,7 @@ class BlueDoor(_Base):
 
     def is_solid(self, brep):
         if not isinstance(brep, rg.Brep):
-            raise ValueError("Input muse be solid")
+            raise ValueError("Input must be solid")
         else:
             return True
 
@@ -260,7 +260,7 @@ class BlueRoom(_Base):
     def is_solid(self, brep):
         # print(rg.Brep.IsSolid(brep))
         if not isinstance(brep, rg.Brep):
-            raise ValueError("Input muse be solid")
+            raise ValueError("Input must be solid")
         else:
             return True
 
@@ -268,7 +268,7 @@ class BlueRoom(_Base):
         if mesh is None:
             raise ValueError("Input must be something, got {}.", mesh)
         elif not isinstance(mesh, rg.Mesh):
-            raise ValueError("Input muse be a mesh, got {}.", type(mesh))
+            raise ValueError("Input must be a mesh, got {}.", type(mesh))
         else:
             return True
 
