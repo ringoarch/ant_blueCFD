@@ -56,13 +56,15 @@ def round_custom(float, times=2):
 
 def find_BCA_exe_file():
     """
-    查找指定目录及其子目录下的blueCFD-AIR..exe文件
+    查找指定目录及其子目录下的blueCFD-AIR.exe文件
     """
+    target = "blueCFD-AIR.exe"
     dir_paths = get_common_program_files()
     for dir_path in dir_paths:
-        for filename in os.listdir(dir_path):
-            if "blueCFD-AIR" in filename:
-                return dir_path + "\\blueCFD-AIR\\blueCFD-AIR.exe"
+        for root, _dirs, files in os.walk(dir_path):
+            for filename in files:
+                if filename.lower() == target.lower():
+                    return os.path.join(root, filename)
     raise ValueError("No exe file found in the folder.")
 
 
@@ -79,13 +81,15 @@ def find_exe_files(software="ParaView"):
     查找指定目录及其子目录下的.exe文件
     """
 
-    dict = {"blueCFD-AIR": "\\blueCFD-AIR.exe", "ParaView": "\\bin\\paraview.exe"}
+    target_map = {"blueCFD-AIR": "blueCFD-AIR.exe", "ParaView": "paraview.exe"}
+    if software not in target_map:
+        raise ValueError(f"Unsupported software: {software}")
+    target = target_map[software]
     dir_paths = get_common_program_files()
     for dir_path in dir_paths:
-        for filename in os.listdir(dir_path):
-            if software in filename:
-                folder = dir_path + "\\" + filename
-                return folder + dict[software]
+        for root, _dirs, files in os.walk(dir_path):
+            if target in files:
+                return os.path.join(root, target)
     raise ValueError("No exe file found in the folder.")
 
 
