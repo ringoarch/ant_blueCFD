@@ -9,7 +9,6 @@
 @Description:
     1. 基础类
 """
-# from .type import valid_string
 from scriptcontext import sticky as st
 from utility import print_time
 import uuid
@@ -31,11 +30,11 @@ class _Base:
     """
 
     instances = []
-    __slots__ = ("identifier", "display_name", "instances")
+    __slots__ = ("_identifier", "display_name")
 
     def __init__(self, display_name=None):
         """Initialize base object."""
-        self.identifier = str(uuid.uuid4().int)[:6]
+        self._identifier = str(uuid.uuid4().int)[:6]
         self.__class__.instances.append(self)
         if display_name is None:
             self.display_name = self.identifier
@@ -53,11 +52,11 @@ class _Base:
         serialized to different formats (eg. dict, idf, rad). As such, this
         property is used to reference the object across a Model.
         """
-        return self.identifier
+        return self._identifier
 
     @identifier.setter
     def identifier(self, value):
-        self.identifier = value
+        self._identifier = value
         # self.identifier = valid_string(value, 'ant object identifier')
 
     def duplicate(self):
@@ -85,3 +84,4 @@ class _Base:
         except:
             pass
         print_time("调用__del__() 销毁对象{}，释放其空间".format(self.display_name))
+
